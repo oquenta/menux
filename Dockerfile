@@ -19,6 +19,7 @@ WORKDIR /app
 COPY --from=deps /app/node_modules ./node_modules
 COPY restosuite/package*.json ./
 COPY restosuite/ ./
+RUN mkdir -p /app/public
 
 # Generar cliente de Prisma para PostgreSQL
 RUN npx prisma generate
