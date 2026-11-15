@@ -48,7 +48,7 @@ COPY --from=builder /app/next.config.mjs ./
 COPY docker-entrypoint.sh /usr/local/bin/docker-entrypoint.sh
 RUN chmod +x /usr/local/bin/docker-entrypoint.sh
 
-EXPOSE 3000
+EXPOSE 3001
 
 ENTRYPOINT ["docker-entrypoint.sh"]
 CMD ["sh", "-c", "npm run start"]
