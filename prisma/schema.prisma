@@ -1,9 +1,4 @@
-// =====================================================================
-// RestoSuite — Schema Prisma (long-range, modelado completo desde el día 1)
-// Constitución: dinero en enteros (centavos), snapshot de precio,
-// un pedido abierto por sesión, tenancy obligatorio, auditoría.
-// =====================================================================
-
+// Prisma schema — RestoSuite (SQLite en demo local; portable a PostgreSQL cambiando provider)
 generator client {
   provider = "prisma-client-js"
 }
@@ -13,146 +8,61 @@ datasource db {
   url      = env("DATABASE_URL")
 }
 
-// ----------------------------- ENUMS ---------------------------------
-
-enum Role {
-  SUPERADMIN
-  GERENTE
-  CAJERO
-}
-
-enum SubscriptionStatus {
-  ACTIVA
-  POR_VENCER // T-15..T-1 dias
-  VENCIDA
-  SUSPENDIDA
-}
-
-enum CategoryKind {
-  PLATO
-  BEBIDA
-  POSTRE
-  OTRO
-}
-
-enum OrderStatus {
-  EN_CAJA
-  PAGADO
-  ANULADO
-  EXPIRADO
-}
-
-enum OrderSource {
-  CAJERO
-  CLIENTE_QR
-}
-
-enum ServiceType {
-  EN_LOCAL
-  PARA_LLEVAR
-}
-
-enum PaymentMethod {
-  EFECTIVO
-  QR
-}
-
-enum PaymentProviderKind {
-  QR_ESTATICO // imagen de QR de cobro del banco (v1)
-  QR_BANCO_GENERICO
-  MERCADO_PAGO
-  OTRO
-}
-
-enum StockReason {
-  VENTA
-  AJUSTE_INGRESO
-  AJUSTE_MERMA
-  COMPRA
-  DEVOLUCION_POR_ANULACION
-}
-
-enum SubscriptionEventType {
-  VENCE_EN_15
-  VENCE_EN_7
-  VENCIDO
-  CORTADO
-  RENOVADO
-}
-
-// --------------------------- TENANCY --------------------------------
+// SQLite no soporta enums de Prisma: usamos String + constantes en src/lib/domain.ts
 
 model Tenant {
-  id             String             @id @default(cuid())
+  id             String   @id @default(cuid())
   name           String
-  slug           String             @unique
-  logoUrl        String?
-  primaryColor   String             @default("#8C2B2B")
-  currency       String             @default("BOB")
+  slug           String   @unique
   phone          String?
-  address        String?
-  orderTtlMinutes Int               @default(30) // Art. IV: TTL pedido cliente
-  notifyDaysBefore Int              @default(15) // R9: aviso 15 dias
-  // Suscripcion (R9)
-  plan                 String            @default("BASICO")
-  subscriptionStartedAt DateTime
-  subscriptionExpiresAt DateTime
-  subscriptionStatus   SubscriptionStatus @default(ACTIVA)
-  priceCents           Int               @default(0) // renta mensual pactada
-  // Estado operativo
-  isActive       Boolean          @default(true)
-  createdAt      DateTime         @default(now())
-  updatedAt      DateTime         @updatedAt
+  primaryColor   String   @default("#7C2D12")
+  orderTtlMinutes Int     @default(30)
+  notifyDaysBefore Int    @default(15)
+  plan           String   @default("BASICO")
+  subStartsAt    DateTime
+  subExpiresAt   DateTime
+  subStatus      String   @default("ACTIVA") // ACTIVA POR_VENCER VENCIDA SUSPENDIDA
+  priceCents     Int      @default(0)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
 
-  users          User[]
-  categories     Category[]
-  products       Product[]
-  tables         Table[]
-  sessions       ClientSession[]
-  orders         Order[]
-  paymentProviders PaymentProvider[]
-  stockMovements StockMovement[]
-  subscriptionEvents SubscriptionEvent[]
-  auditLogs      AuditLog[]
-
-  @@index([subscriptionExpiresAt])
-  @@index([subscriptionStatus])
+  users       User[]
+  categories  Category[]
+  products    Product[]
+  tables      Table[]
+  sessions    ClientSession[]
+  orders      Order[]
+  providers   PaymentProvider[]
+  movements   StockMovement[]
+  subEvents   SubscriptionEvent[]
+  auditLogs   AuditLog[]
 }
-
-// --------------------------- USERS ----------------------------------
 
 model User {
   id           String   @id @default(cuid())
   email        String   @unique
   passwordHash String
   name         String
-  displayName  String? // alias mostrado en caja (p.ej. "JM")
-  role         Role
-  tenantId     String? // SUPERADMIN no pertenece a tenant
+  displayName  String?
+  role         String // SUPERADMIN GERENTE CAJERO
+  tenantId     String?
   tenant       Tenant?  @relation(fields: [tenantId], references: [id])
   createdAt    DateTime @default(now())
-  updatedAt    DateTime @updatedAt
-
-  @@index([tenantId, role])
 }
 
-// ------------------------ CATALOGO ----------------------------------
-
 model Category {
-  id        String       @id @default(cuid())
+  id        String   @id @default(cuid())
   tenantId  String
-  tenant    Tenant       @relation(fields: [tenantId], references: [id])
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
   name      String
-  kind      CategoryKind @default(OTRO) // R7: comida/bebida/postre
-  sortOrder Int          @default(0)
-  active    Boolean      @default(true)
-  createdAt DateTime     @default(now())
-  updatedAt DateTime     @updatedAt
+  kind      String   @default("OTRO") // PLATO BEBIDA POSTRE OTRO
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
 
   products Product[]
 
   @@unique([tenantId, name])
-  @@index([tenantId, active])
 }
 
 model Product {
@@ -163,89 +73,73 @@ model Product {
   category    Category @relation(fields: [categoryId], references: [id])
   name        String
   description String?
+  emoji       String   @default("🍽")
   photoUrl    String?
-  priceCents  Int // Art. III: entero, centavos
+  priceCents  Int
   stock       Int      @default(0)
   trackStock  Boolean  @default(true)
-  lowStockAt  Int      @default(3) // umbral "stock bajo"
+  lowStockAt  Int      @default(3)
   active      Boolean  @default(true)
-  createdAt   DateTime @default(now())
-  updatedAt   DateTime @updatedAt
 
-  items          OrderItem[]
-  stockMovements StockMovement[]
-
-  @@index([tenantId, categoryId, active])
-  @@index([tenantId, name])
+  items    OrderItem[]
+  movements StockMovement[]
 }
 
-// -------------------------- MESAS -----------------------------------
-
 model Table {
-  id        String  @id @default(cuid())
-  tenantId  String
-  tenant    Tenant  @relation(fields: [tenantId], references: [id])
-  number    Int
-  seats     Int     @default(4)
-  qrToken   String  @unique @default(cuid()) // token anti-falsificacion en la URL
-  active    Boolean @default(true)
+  id       String  @id @default(cuid())
+  tenantId String
+  tenant   Tenant  @relation(fields: [tenantId], references: [id])
+  number   Int
+  seats    Int     @default(4)
+  active   Boolean @default(true)
 
   sessions ClientSession[]
 
   @@unique([tenantId, number])
 }
 
-// ------------------------ SESION CLIENTE ----------------------------
-
 model ClientSession {
-  id        String    @id @default(cuid())
+  id        String   @id @default(cuid())
   tenantId  String
-  tenant    Tenant    @relation(fields: [tenantId], references: [id])
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
   tableId   String?
-  table     Table?    @relation(fields: [tableId], references: [id])
-  alias     String? // como llamara caja al cliente
-  phone     String? // celular para control estricto (R4)
-  closed    Boolean   @default(false)
-  createdAt DateTime  @default(now())
-  updatedAt DateTime  @updatedAt
+  table     Table?   @relation(fields: [tableId], references: [id])
+  alias     String?
+  phone     String?
+  closed    Boolean  @default(false)
+  createdAt DateTime @default(now())
 
   orders Order[]
-
-  @@index([tenantId, closed])
 }
 
-// --------------------------- PEDIDOS --------------------------------
-
 model Order {
-  id         String      @id @default(cuid())
-  tenantId   String
-  tenant     Tenant      @relation(fields: [tenantId], references: [id])
-  sessionId  String
-  session    ClientSession @relation(fields: [sessionId], references: [id])
-  code       String // VK3MD (5 car. sin ambiguos), unico por tenant y dia
-  businessDay DateTime   @db.Date
-  status     OrderStatus @default(EN_CAJA)
-  source     OrderSource @default(CLIENTE_QR)
-  serviceType ServiceType @default(EN_LOCAL)
+  id           String        @id @default(cuid())
+  tenantId     String
+  tenant       Tenant        @relation(fields: [tenantId], references: [id])
+  sessionId    String
+  session      ClientSession @relation(fields: [sessionId], references: [id])
+  code         String
+  status       String        @default("EN_CAJA") // EN_CAJA PAGADO ANULADO EXPIRADO
+  source       String        @default("CLIENTE_QR") // CLIENTE_QR CAJERO
+  serviceType  String        @default("EN_LOCAL")
+  tableNumber  Int?
   aliasSnapshot String?
   phoneSnapshot String?
-  expiresAt  DateTime // createdAt + tenant.orderTtlMinutes (Art. IV)
-  totalCents Int
-  paidCents  Int?
-  changeCents Int?
-  paidAt     DateTime?
-  closedAt   DateTime?
-  notes      String?
-  createdAt  DateTime    @default(now())
-  updatedAt  DateTime    @updatedAt
+  notes        String?
+  expiresAt    DateTime
+  totalCents   Int
+  paidCents    Int?
+  changeCents  Int?
+  method       String?
+  paidAt       DateTime?
+  closedAt     DateTime?
+  createdAt    DateTime      @default(now())
 
   items    OrderItem[]
   payments Payment[]
 
-  @@unique([tenantId, businessDay, code])
-  @@index([tenantId, status, createdAt])
-  // Art. IV: un pedido abierto/pagado por sesion (indice parcial)
-  @@index([sessionId, status])
+  @@index([tenantId, status])
+  @@index([code])
 }
 
 model OrderItem {
@@ -254,106 +148,71 @@ model OrderItem {
   order           Order   @relation(fields: [orderId], references: [id])
   productId       String
   product         Product @relation(fields: [productId], references: [id])
-  nameSnapshot    String // Art. III: precio/nombre congelados
+  nameSnapshot    String
+  emojiSnapshot   String  @default("🍽")
   unitPriceCents  Int
   qty             Int
-  categoryKindSnapshot CategoryKind // R7: separacion de comandas por comida/bebida/postre
-  sentToKitchen   Boolean @default(false) // evita comandas duplicadas al reimprimir
-  notes           String?
+  kindSnapshot    String // PLATO BEBIDA POSTRE
+  sentToKitchen   Boolean @default(false)
 
-  @@index([orderId])
   @@index([productId])
 }
 
 model Payment {
-  id               String        @id @default(cuid())
-  orderId          String
-  order            Order         @relation(fields: [orderId], references: [id])
-  method           PaymentMethod
-  providerId       String? // null => efectivo
-  provider         PaymentProvider? @relation(fields: [providerId], references: [id])
-  providerRef      String? @unique // idempotencia: referencia del gateway Art. II
-  amountCents      Int
-  tipCents         Int           @default(0) // fase 2
-  serviceType      ServiceType
-  createdAt        DateTime      @default(now())
-  createdByUserId  String?
-
-  @@index([orderId])
+  id          String           @id @default(cuid())
+  orderId     String
+  order       Order            @relation(fields: [orderId], references: [id])
+  method      String // EFECTIVO QR
+  providerId  String?
+  provider    PaymentProvider? @relation(fields: [providerId], references: [id])
+  providerRef String?          @unique
+  amountCents Int
+  createdAt   DateTime         @default(now())
 }
 
-// --------------------- PROVEEDORES PAGO QR (R2) ---------------------
-
 model PaymentProvider {
-  id           String              @id @default(cuid())
+  id           String    @id @default(cuid())
   tenantId     String
-  tenant       Tenant              @relation(fields: [tenantId], references: [id])
-  name         String // p.ej. "QR Banco Union"
-  kind         PaymentProviderKind @default(QR_ESTATICO)
-  /** Credenciales cifradas AES-256-GCM con PAYMENT_ENCRYPTION_KEY (nunca al cliente) */
-  credentialsEncrypted String?
-  qrImageUrl   String? // para QR_ESTATICO
-  priority     Int                 @default(0)
-  active       Boolean             @default(true)
-  lastCheckedAt DateTime?
-  lastCheckOk  Boolean?
-  createdAt    DateTime            @default(now())
-  updatedAt    DateTime            @updatedAt
+  tenant       Tenant    @relation(fields: [tenantId], references: [id])
+  name         String
+  kind         String    @default("QR_ESTATICO")
+  credentials  String? // placeholder cifrado en fase posterior
+  priority     Int       @default(0)
+  active       Boolean   @default(true)
 
   payments Payment[]
 
   @@unique([tenantId, name])
-  @@index([tenantId, active, priority])
 }
-
-// --------------------------- STOCK (R10) ----------------------------
 
 model StockMovement {
-  id        String      @id @default(cuid())
+  id        String   @id @default(cuid())
   tenantId  String
-  tenant    Tenant      @relation(fields: [tenantId], references: [id])
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
   productId String
-  product   Product     @relation(fields: [productId], references: [id])
-  delta     Int // +/- unidades
-  reason    StockReason
-  referenceId String? // orderId / usuario / nota
-  note      String?
-  createdAt DateTime    @default(now())
-  byUserId  String?
-
-  @@index([tenantId, productId, createdAt])
+  product   Product  @relation(fields: [productId], references: [id])
+  delta     Int
+  reason    String // VENTA INGRESO MERMA DEVOLUCION
+  createdAt DateTime @default(now())
 }
-
-// ---------------------- SUSCRIPCIONES (R9) --------------------------
 
 model SubscriptionEvent {
-  id         String                 @id @default(cuid())
-  tenantId   String
-  tenant     Tenant                 @relation(fields: [tenantId], references: [id])
-  type       SubscriptionEventType
-  // idempotencia: un evento por tipo y dia
-  firedOn    DateTime               @db.Date
-  message    String?
-  createdAt  DateTime               @default(now())
-
-  @@unique([tenantId, type, firedOn])
-  @@index([tenantId, createdAt])
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  type      String // VENCE_15 VENCE_7 VENCIDO CORTADO RENOVADO
+  message   String?
+  createdAt DateTime @default(now())
 }
 
-// --------------------------- AUDITORIA ------------------------------
-
 model AuditLog {
-  id        String   @id @default(cuid())
-  tenantId  String?
-  tenant    Tenant?  @relation(fields: [tenantId], references: [id])
+  id         String   @id @default(cuid())
+  tenantId   String?
+  tenant     Tenant?  @relation(fields: [tenantId], references: [id])
   actorEmail String?
-  action    String // cobro, anulacion, edicion_producto, corte_suscripcion...
-  entity    String
-  entityId  String?
-  before    Json?
-  after     Json?
-  createdAt DateTime @default(now())
-
-  @@index([tenantId, createdAt])
-  @@index([action])
+  action     String
+  entity     String
+  entityId   String?
+  detail     String?
+  createdAt  DateTime @default(now())
 }
