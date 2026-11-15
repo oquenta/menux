@@ -1,4 +1,6 @@
-#!/bin/sh
+#!/usr/bin/env sh
+set -e
+set -o pipefail
 set -e
 
 echo "=================================================="
