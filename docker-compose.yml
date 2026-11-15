@@ -3,10 +3,9 @@ services:
     build:
       context: .
       dockerfile: Dockerfile
-    container_name: resto-app
     restart: always
-    ports:
-      - "3000:3000"
+    expose:
+      - "3000"
     environment:
       - DATABASE_URL=postgresql://${POSTGRES_USER:-resto}:${POSTGRES_PASSWORD:-resto}@db:5432/${POSTGRES_DB:-resto}?schema=public
       - APP_SECRET=${APP_SECRET:-restosuite-secret-key-coolify-change-me}
@@ -19,14 +18,13 @@ services:
 
   db:
     image: postgres:16-alpine
-    container_name: resto-db
     restart: always
     environment:
       POSTGRES_USER: ${POSTGRES_USER:-resto}
       POSTGRES_PASSWORD: ${POSTGRES_PASSWORD:-resto}
       POSTGRES_DB: ${POSTGRES_DB:-resto}
-    ports:
-      - "5432:5432"
+    expose:
+      - "5432"
     volumes:
       - resto-data:/var/lib/postgresql/data
     healthcheck:
