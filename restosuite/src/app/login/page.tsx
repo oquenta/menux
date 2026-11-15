@@ -19,7 +19,7 @@ export default async function LoginPage({ searchParams }: { searchParams: Promis
           {err === "suscripcion" && <p className="mt-3 rounded-xl bg-berry/10 border border-berry/30 px-4 py-2 text-center text-sm text-berry">Suscripción vencida — contacta al operador</p>}
           <p className="mt-4 text-center text-xs text-muted">
             Prueba: admin@resto.app · gerente@paila.app · cajero@paila.app — clave <b>demo1234</b>
-          </p>>
+          </p>
         </form>
       </div>
     </main>
