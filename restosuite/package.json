@@ -4,9 +4,10 @@
   "private": true,
   "scripts": {
     "dev": "next dev -p 3100",
-    "build": "npx prisma db push && next build",
+    "build": "prisma generate && next build",
     "start": "next start -p 3000",
-    "db:push": "prisma db push && node prisma/seed.mjs"
+    "db:push": "prisma db push",
+    "db:seed": "node prisma/seed.mjs"
   },
   "dependencies": {
     "@prisma/client": "^6.7.0",

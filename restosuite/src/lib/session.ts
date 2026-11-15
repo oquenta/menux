@@ -5,7 +5,7 @@ import { db } from "./db";
 import { cache } from "react";
 
 const COOKIE = "rst";
-const secret = () => process.env.APP_SECRET || "restosuite-dev-secret";
+const secret = () => process.env.APP_SECRET || process.env.AUTH_SECRET || "restosuite-dev-secret";
 
 export type SessionPayload = { uid: string; email: string; name: string; role: string; displayName?: string; tenantId?: string; slug?: string; exp: number };
 

@@ -1,4 +1,4 @@
-// Seed demo — RestoSuite (SQLite)
+// Seed demo / producción — RestoSuite
 import { PrismaClient } from "@prisma/client";
 import bcrypt from "bcryptjs";
 
@@ -8,22 +8,35 @@ const D = (d) => new Date(now.getTime() + d * 86400000);
 const cents = (b) => Math.round(b * 100);
 
 async function main() {
-  console.log("Limpiando BD…");
-  await db.payment.deleteMany();
-  await db.orderItem.deleteMany();
-  await db.order.deleteMany();
-  await db.clientSession.deleteMany();
-  await db.stockMovement.deleteMany();
-  await db.subscriptionEvent.deleteMany();
-  await db.paymentProvider.deleteMany();
-  await db.product.deleteMany();
-  await db.category.deleteMany();
-  await db.table.deleteMany();
-  await db.user.deleteMany();
-  await db.auditLog.deleteMany();
-  await db.tenant.deleteMany();
+  const userCount = await db.user.count().catch(() => 0);
+  const forceSeed = process.env.FORCE_SEED === "true";
 
-  const pass = await bcrypt.hash("demo1234", 10);
+  if (userCount > 0 && !forceSeed) {
+    console.log(`[Seed] La base de datos ya contiene ${userCount} usuarios. Omitiendo seed automático para proteger los datos.`);
+    return;
+  }
+
+  if (forceSeed) {
+    console.log("[Seed] FORCE_SEED=true: Limpiando tablas existentes…");
+    await db.payment.deleteMany();
+    await db.orderItem.deleteMany();
+    await db.order.deleteMany();
+    await db.clientSession.deleteMany();
+    await db.stockMovement.deleteMany();
+    await db.subscriptionEvent.deleteMany();
+    await db.paymentProvider.deleteMany();
+    await db.product.deleteMany();
+    await db.category.deleteMany();
+    await db.table.deleteMany();
+    await db.user.deleteMany();
+    await db.auditLog.deleteMany();
+    await db.tenant.deleteMany();
+  }
+
+  console.log("[Seed] Sembrando datos iniciales...");
+  const adminPass = process.env.SEED_ADMIN_PASSWORD || "demo1234";
+  const adminEmail = process.env.SEED_ADMIN_EMAIL || "admin@resto.app";
+  const pass = await bcrypt.hash(adminPass, 10);
 
   // ===== La Paila (activa, vence en 150 días) =====
   const paila = await db.tenant.create({
@@ -35,7 +48,7 @@ async function main() {
   });
   await db.user.createMany({
     data: [
-      { email: "admin@resto.app", passwordHash: pass, name: "Root Admin", role: "SUPERADMIN", displayName: "RS" },
+      { email: adminEmail, passwordHash: pass, name: "Root Admin", role: "SUPERADMIN", displayName: "RS" },
       { email: "gerente@paila.app", passwordHash: pass, name: "Jessica Mamani", role: "GERENTE", tenantId: paila.id, displayName: "JM" },
       { email: "cajero@paila.app", passwordHash: pass, name: "Cajero La Paila", role: "CAJERO", tenantId: paila.id, displayName: "CJ" },
     ],
