@@ -10,7 +10,7 @@ services:
       - "traefik.enable=true"
       - "traefik.http.services.app.loadbalancer.server.port=3000"
     environment:
-      - DATABASE_URL=postgresql://${POSTGRES_USER:-resto}:${POSTGRES_PASSWORD:-resto}@db:5432/${POSTGRES_DB:-resto}?schema=public
+      - DATABASE_URL=${DATABASE_URL:-postgresql://${POSTGRES_USER:-resto}:${POSTGRES_PASSWORD:-resto}@db:5432/${POSTGRES_DB:-resto}?schema=public}
       - APP_SECRET=${APP_SECRET:-restosuite-secret-key-coolify-change-me}
       - NEXT_PUBLIC_APP_URL=${NEXT_PUBLIC_APP_URL:-https://menux.gehma.vip}
       - PORT=3000
@@ -19,11 +19,11 @@ services:
       db:
         condition: service_healthy
     healthcheck:
-      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/ || exit 1"]
+      test: ["CMD-SHELL", "wget -qO- http://127.0.0.1:3000/api/health || exit 1"]
       interval: 10s
       timeout: 5s
       retries: 5
-      start_period: 25s
+      start_period: 30s
     networks:
       - default
       - coolify

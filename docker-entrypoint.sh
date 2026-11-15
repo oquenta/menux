@@ -12,7 +12,7 @@ else
   echo "==> Verificando conexion a PostgreSQL y sincronizando esquema..."
   MAX_RETRIES=30
   COUNT=0
-  until npx prisma db push --skip-generate || [ $COUNT -ge $MAX_RETRIES ]; do
+  until npx prisma db push --accept-data-loss --skip-generate || [ $COUNT -ge $MAX_RETRIES ]; do
     echo "==> Esperando conexion con PostgreSQL (intento $((COUNT+1)) de $MAX_RETRIES)..."
     sleep 2
     COUNT=$((COUNT + 1))
