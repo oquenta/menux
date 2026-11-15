@@ -33,7 +33,7 @@ async function main() {
     await db.tenant.deleteMany();
   }
 
-  console.log("[Seed] Sembrando datos iniciales...");
+  console.log("[Seed] Sembrando datos de prueba...");
   const adminPass = process.env.SEED_ADMIN_PASSWORD || "demo1234";
   const adminEmail = process.env.SEED_ADMIN_EMAIL || "admin@resto.app";
   const pass = await bcrypt.hash(adminPass, 10);
@@ -41,7 +41,7 @@ async function main() {
   // ===== La Paila (activa, vence en 150 días) =====
   const paila = await db.tenant.create({
     data: {
-      name: "La Paila", slug: "la-paila", phone: "+591 23456789",
+      name: "La Paila (Prueba)", slug: "la-paila-prueba", phone: "+591 23456789",
       subStartsAt: D(-100), subExpiresAt: D(150), subStatus: "ACTIVA",
       plan: "PROFESIONAL", priceCents: cents(149),
     },
@@ -76,12 +76,12 @@ async function main() {
   await db.paymentProvider.create({ data: { tenantId: paila.id, name: "QR Banco Unión", kind: "QR_ESTATICO", priority: 1 } });
   await db.paymentProvider.create({ data: { tenantId: paila.id, name: "Mercado Pago", kind: "MERCADO_PAGO", priority: 2 } });
 
-  // ===== Chifa del Sol (VENCIDA — para demo del corte R9) =====
+  // ===== Chifa del Sol (VENCIDA — para prueba del corte R9) =====
   const chifa = await db.tenant.create({
-    data: { name: "Chifa del Sol", slug: "chifa-del-sol", subStartsAt: D(-60), subExpiresAt: D(-3), subStatus: "VENCIDA", plan: "BÁSICO", priceCents: cents(79) },
+    data: { name: "Chifa del Sol (Prueba)", slug: "chifa-del-sol-prueba", subStartsAt: D(-60), subExpiresAt: D(-3), subStatus: "VENCIDA", plan: "BÁSICO", priceCents: cents(79) },
   });
-  await db.user.create({ data: { email: "gerente@chifa.app", passwordHash: pass, name: " Presidente Chifa", role: "GERENTE", tenantId: chifa.id, displayName: "CH" } });
-  await db.tenant.create({ data: { name: "Urban Grill", slug: "urban-grill", subStartsAt: D(-40), subExpiresAt: D(12), subStatus: "ACTIVA", plan: "BÁSICO", priceCents: cents(79) } });
+  await db.user.create({ data: { email: "gerente@chifa-prueba.app", passwordHash: pass, name: " Presidente Chifa", role: "GERENTE", tenantId: chifa.id, displayName: "CH" } });
+  await db.tenant.create({ data: { name: "Urban Grill (Prueba)", slug: "urban-grill-prueba", subStartsAt: D(-40), subExpiresAt: D(12), subStatus: "ACTIVA", plan: "BÁSICO", priceCents: cents(79) } });
 
   // ===== Un pedido EN_CAJA de ejemplo (para ver la caja con data al abrir) =====
   const sess = await db.clientSession.create({ data: { tenantId: paila.id, tableId: tables[0].id, alias: "oscar", phone: "71572401" } });
@@ -101,7 +101,7 @@ async function main() {
     },
   });
   void order; void sopa; void chicha;
-  console.log("Seed OK → tenure: la-paila, chifa-del-sol, urban-grill");
+  console.log("Seed OK → tenants de prueba: la-paila-prueba, chifa-del-sol-prueba, urban-grill-prueba");
 }
 
 main().finally(() => db.$disconnect());
