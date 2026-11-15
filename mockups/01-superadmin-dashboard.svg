@@ -1,0 +1,129 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" font-family="Segoe UI, Arial" xmlns:xlink="http://www.w3.org/1999/xlink">
+  <defs>
+    <linearGradient id="g1" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8C2B2B"/><stop offset="1" stop-color="#B4452F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="900" fill="#F6F1EA"/>
+  <!-- Sidebar -->
+  <rect width="240" height="900" fill="#1E2532"/>
+  <circle cx="40" cy="44" r="16" fill="url(#g1)"/>
+  <text x="66" y="50" fill="#fff" font-size="19" font-weight="700">RestoSuite</text>
+  <text x="66" y="68" fill="#8891A5" font-size="11">Panel del operador</text>
+  <g font-size="14" fill="#C2C8D4">
+    <rect x="16" y="110" width="208" height="42" rx="10" fill="#2C3547"/>
+    <rect x="16" y="160" width="208" height="42" rx="10"/>
+    <rect x="16" y="210" width="208" height="42" rx="10"/>
+    <rect x="16" y="260" width="208" height="42" rx="10"/>
+    <rect x="16" y="310" width="208" height="42" rx="10"/>
+    <text x="36" y="137" fill="#fff" font-weight="600">▦ Dashboard</text>
+    <text x="36" y="187">🏪 Restaurantes</text>
+    <text x="36" y="237">💳 Suscripciones</text>
+    <text x="36" y="287">🔔 Notificaciones</text>
+    <text x="36" y="337">⚙ Ajustes</text>
+  </g>
+  <rect x="16" y="820" width="208" height="1" fill="#2C3547"/>
+  <text x="30" y="850" fill="#8891A5" font-size="12">SaaS Multi-Restaurante</text>
+  <text x="30" y="868" fill="#8891A5" font-size="12">v1.0 · Tenants: 24</text>
+  <!-- Header -->
+  <text x="280" y="60" fill="#26303F" font-size="24" font-weight="700">Dashboard global</text>
+  <rect x="1000" y="34" width="260" height="38" rx="19" fill="#fff" stroke="#E4DDD2"/>
+  <text x="1060" y="59" fill="#9AA1AF" font-size="13">Buscar restaurante…</text>
+  <circle cx="1330" cy="53" r="17" fill="#8C2B2B"/>
+  <text x="1324" y="58" fill="#fff" font-size="12" font-weight="700">RS</text>
+  <!-- Alert banner -->
+  <rect x="280" y="96" width="1120" height="46" rx="10" fill="#FDF3E4" stroke="#E7B75F"/>
+  <text x="306" y="125" fill="#9A6B1F" font-size="14" font-weight="600">⚠ 3 suscripciones vencen en menos de 15 días · 1 vencida accesando y bloqueada</text>
+  <!-- KPIs -->
+  <g>
+    <rect x="280" y="166" width="260" height="112" rx="14" fill="#fff" stroke="#E4DDD2"/>
+    <text x="306" y="198" fill="#7A8394" font-size="12">RESTAURANTES ACTIVOS</text>
+    <text x="306" y="240" fill="#26303F" font-size="30" font-weight="800">24</text>
+    <text x="306" y="266" fill="#2E8B57" font-size="12">+2 este mes</text>
+    <rect x="560" y="166" width="260" height="112" rx="14" fill="#fff" stroke="#E4DDD2"/>
+    <text x="586" y="198" fill="#7A8394" font-size="12">SUSCRIPCIONES ACTIVAS</text>
+    <text x="586" y="240" fill="#26303F" font-size="30" font-weight="800">22</text>
+    <text x="586" y="266" fill="#7A8394" font-size="12">91% operación nominal</text>
+    <rect x="840" y="166" width="260" height="112" rx="14" fill="#FFF6E8" stroke="#E7B75F"/>
+    <text x="866" y="198" fill="#9A6B1F" font-size="12">POR VENCER (≤15 DÍAS)</text>
+    <text x="866" y="240" fill="#9A6B1F" font-size="30" font-weight="800">3</text>
+    <text x="866" y="266" fill="#9A6B1F" font-size="12">avisos enviados por correo</text>
+    <rect x="1120" y="166" width="280" height="112" rx="14" fill="#fff" stroke="#E4DDD2"/>
+    <text x="1146" y="198" fill="#7A8394" font-size="12">INGRESO MENSUAL SUSCRIPC.</text>
+    <text x="1146" y="240" fill="#26303F" font-size="30" font-weight="800">Bs 24.500</text>
+    <text x="1146" y="266" fill="#2E8B57" font-size="12">MRR · +8%</text>
+  </g>
+  <!-- Chart -->
+  <rect x="280" y="300" width="620" height="250" rx="14" fill="#fff" stroke="#E4DDD2"/>
+  <text x="306" y="334" fill="#26303F" font-size="15" font-weight="700">Ventas por restaurante (hoy)</text>
+  <g>
+    <text x="340" y="520" fill="#7A8394" font-size="12">La Paila</text><rect x="340" y="500" width="20" height="0"/>
+  </g>
+  <g fill="#8C2B2B">
+    <rect x="330" y="480" width="46" height="38" rx="6"/><rect x="400" y="430" width="46" height="88" rx="6"/>
+    <rect x="470" y="500" width="46" height="18" rx="6"/><rect x="540" y="370" width="46" height="148" rx="6"/>
+    <rect x="610" y="450" width="46" height="68" rx="6"/><rect x="680" y="415" width="46" height="103" rx="6"/>
+    <rect x="750" y="470" width="46" height="48" rx="6"/><rect x="820" y="497" width="46" height="21" rx="6"/>
+  </g>
+  <g fill="#7A8394" font-size="10">
+    <text x="330" y="540">Paila</text><text x="398" y="540">Chifa</text><text x="472" y="540">Urban</text>
+    <text x="540" y="540">Grill</text><text x="604" y="540">Napoli</text><text x="676" y="540">Sabor</text>
+    <text x="750" y="540">Kyra</text><text x="822" y="540">Doña M.</text>
+  </g>
+  <line x1="310" y1="518" x2="880" y2="518" stroke="#ECE6DC"/>
+  <!-- Expiry table -->
+  <rect x="920" y="300" width="480" height="250" rx="14" fill="#fff" stroke="#E4DDD2"/>
+  <text x="946" y="334" fill="#26303F" font-size="15" font-weight="700">Vencimientos próximo</text>
+  <g font-size="12" fill="#7A8394">
+    <text x="1220" y="334">15 días 📩</text>
+  </g>
+  <g font-size="12.5">
+    <text x="946" y="374" fill="#26303F" font-weight="600">La Paila</text>
+    <text x="1120" y="374" fill="#7A8394">08/06/2026</text>
+    <rect x="1230" y="360" width="86" height="20" rx="10" fill="#2E8B57"/>
+    <text x="1240" y="374" fill="#fff" font-size="11" font-weight="600">ACTIVA</text>
+    <text x="946" y="412" fill="#26303F" font-weight="600">Chifa del Sol</text>
+    <text x="1120" y="412" fill="#7A8394">15/06/2026</text>
+    <rect x="1230" y="398" width="120" height="20" rx="10" fill="#E7A917"/>
+    <text x="1238" y="412" fill="#3D2E00" font-size="11" font-weight="700">POR VENCER · 7d</text>
+    <text x="946" y="450" fill="#26303F" font-weight="600">Urban Grill</text>
+    <text x="1120" y="450" fill="#7A8394">20/06/2026</text>
+    <rect x="1230" y="436" width="120" height="20" rx="10" fill="#E7A917"/>
+    <text x="1238" y="450" fill="#3D2E00" font-size="11" font-weight="700">POR VENCER · 12d</text>
+    <text x="946" y="488" fill="#26303F" font-weight="600">Napoli Pizza</text>
+    <text x="1120" y="488" fill="#7A8394">05/06/2026</text>
+    <rect x="1230" y="474" width="86" height="20" rx="10" fill="#C0392B"/>
+    <text x="1240" y="488" fill="#fff" font-size="11" font-weight="600">VENCIDA</text>
+  </g>
+  <!-- Bottom table -->
+  <rect x="280" y="574" width="1120" height="290" rx="14" fill="#fff" stroke="#E4DDD2"/>
+  <text x="306" y="608" fill="#26303F" font-size="15" font-weight="700">Restaurantes del sistema</text>
+  <rect x="1230" y="590" width="146" height="34" rx="17" fill="#8C2B2B"/>
+  <text x="1263" y="612" fill="#fff" font-size="13" font-weight="600">+ Restaurante</text>
+  <g font-size="13">
+    <line x1="306" y1="636" x2="1374" y2="636" stroke="#ECE6DC"/>
+    <text x="306" y="662" fill="#7A8394" font-size="11.5" font-weight="700">RESTAURANTE</text>
+    <text x="760" y="662" fill="#7A8394" font-size="11.5" font-weight="700">PLAN</text>
+    <text x="920" y="662" fill="#7A8394" font-size="11.5" font-weight="700">VENCE</text>
+    <text x="1080" y="662" fill="#7A8394" font-size="11.5" font-weight="700">ESTADO</text>
+    <text x="1230" y="662" fill="#7A8394" font-size="11.5" font-weight="700">ACCIONES</text>
+    <line x1="306" y1="680" x2="1374" y2="680" stroke="#F1EBE2"/>
+    <text x="306" y="708" fill="#26303F" font-weight="600">🍚 La Paila — Picantería Criolla</text>
+    <text x="760" y="708" fill="#7A8394">Profesional</text>
+    <text x="920" y="708" fill="#7A8394">08 jun 2027</text>
+    <rect x="1080" y="692" width="70" height="22" rx="11" fill="#2E8B57"/><text x="1090" y="707" fill="#fff" font-size="11" font-weight="600">ACTIVA</text>
+    <text x="1230" y="708" fill="#5B7BD0">Contrato · Menú · APIs</text>
+    <line x1="306" y1="724" x2="1374" y2="724" stroke="#F1EBE2"/>
+    <text x="306" y="752" fill="#26303F" font-weight="600">🍜 Chifa del Sol</text>
+    <text x="760" y="752" fill="#7A8394">Básico</text>
+    <text x="920" y="752" fill="#7A8394">15 jun 2026 (7d)</text>
+    <rect x="1080" y="736" width="90" height="22" rx="11" fill="#E7A917"/><text x="1088" y="751" fill="#3D2E00" font-size="11" font-weight="700">POR VENCER</text>
+    <text x="1230" y="752" fill="#5B7BD0">Renovar · Avisar</text>
+    <line x1="306" y1="768" x2="1374" y2="768" stroke="#F1EBE2"/>
+    <text x="306" y="796" fill="#26303F" font-weight="600">🍕 Napoli Pizza</text>
+    <text x="760" y="796" fill="#7A8394">Básico</text>
+    <text x="920" y="796" fill="#7A8394">05 jun 2026</text>
+    <rect x="1080" y="780" width="90" height="22" rx="11" fill="#C0392B"/><text x="1088" y="795" fill="#fff" font-size="11" font-weight="600">VENCIDA 🔒</text>
+    <text x="1230" y="796" fill="#5B7BD0">Cortar · Suscribir</text>
+  </g>
+</svg>

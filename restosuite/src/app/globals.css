@@ -1,0 +1,36 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  body { @apply bg-paper text-ink antialiased; }
+  ::selection { @apply bg-terra text-white; }
+}
+
+@layer components {
+  .card { @apply bg-white border border-line rounded-2xl shadow-soft; }
+  .input { @apply w-full bg-white border border-line rounded-xl px-3.5 py-2.5 text-sm outline-none transition focus:border-terra focus:ring-2 focus:ring-terra/15 placeholder:text-muted/70; }
+  .label { @apply block text-xs font-semibold tracking-wide text-muted uppercase mb-1.5; }
+  .btn { @apply inline-flex items-center justify-center gap-2 rounded-xl px-4 py-2.5 text-sm font-semibold transition active:scale-[.98] disabled:opacity-50 disabled:pointer-events-none; }
+  .btn-primary { @apply btn bg-terra text-white hover:bg-terra-dark shadow-soft; }
+  .btn-gold { @apply btn bg-gold text-ink hover:brightness-95; }
+  .btn-ghost { @apply btn bg-white border border-line text-ink hover:bg-paper; }
+  .btn-danger { @apply btn border !border-berry/40 text-berry hover:bg-berry/10;}
+  .btn-moss { @apply btn bg-moss text-white hover:brightness-95; }
+  .badge { @apply inline-flex items-center gap-1 rounded-full px-2.5 py-1 text-[11px] font-bold tracking-wide; }
+  .badge-moss { @apply badge bg-moss/15 text-moss; }
+  .badge-gold { @apply badge bg-gold/20 text-[#8a5b12]; }
+  .badge-berry { @apply badge bg-berry/15 text-berry; }
+  .badge-line { @apply badge bg-paper text-muted border border-line; }
+  .th { @apply text-left text-[11px] font-bold uppercase tracking-wider text-muted px-4 py-2.5; }
+  .td { @apply px-4 py-3 text-sm border-t border-line/60; }
+  .sidebar-link { @apply flex items-center gap-3 rounded-xl px-3.5 py-2.5 text-sm font-medium text-paper/70 hover:bg-white/5 hover:text-white transition; }
+  .sidebar-link-active { @apply sidebar-link bg-white/10 text-white shadow-inner; }
+}
+
+/* ===== Impresión 80mm (Art. Constitución — ticket/comanda) ===== */
+@media print {
+  .no-print { display: none !important; }
+  .ticket { margin: 0; width: 74mm; font-size: 11px; font-family: "Consolas", monospace; }
+  @page { size: 80mm auto; margin: 4mm; }
+}

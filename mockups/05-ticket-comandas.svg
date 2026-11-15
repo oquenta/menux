@@ -1,0 +1,86 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 860" font-family="Consolas, 'Courier New', monospace">
+  <rect width="1280" height="860" fill="#EDE7DE"/>
+  <text x="60" y="56" fill="#26303F" font-family="Segoe UI, Arial" font-size="24" font-weight="800">Impresión térmica 80mm — Ticket del cliente + Comandas de cocina por categoría</text>
+  <text x="60" y="82" fill="#7A8394" font-family="Segoe UI, Arial" font-size="13">Al cobrar se despliegan automáticamente: 1 ticket de venta (cliente) + una comanda gastronómica por categoría (R7).</text>
+  <rect x="470" y="118" width="120" height="34" rx="8" fill="#26303F"/>
+  <text x="489" y="140" fill="#fff" font-family="Segoe UI" font-size="13" font-weight="600">🖨 Imprimir</text>
+
+  <!-- ================= TICKET CLIENT ==================== -->
+  <rect x="120" y="130" width="330" height="640" rx="4" fill="#fff"/>
+  <g fill="#26221B" font-size="11" font-family="Consolas, 'Courier New', monospace">
+    <text x="285" y="168" text-anchor="middle" font-weight="700" font-size="13">LA PAILA — PICANTERÍA CRIOLLA</text>
+    <text x="285" y="188" text-anchor="middle">Telf: 23456789</text>
+    <text x="285" y="206" text-anchor="middle">Av. Principal #1259 Zona Central</text>
+    <text x="285" y="224" text-anchor="middle">Cochabamba, Bolivia</text>
+    <text x="285" y="248" text-anchor="middle">-----*-----</text>
+    <text x="285" y="272" text-anchor="middle" font-weight="700" font-size="13">COMANDA VENDIDA</text>
+    <text x="285" y="296" text-anchor="middle">Pedido código: VK3MD</text>
+    <text x="285" y="314" text-anchor="middle">Fecha: 08/06/2026 05:15 p.m.</text>
+    <text x="285" y="332" text-anchor="middle">Cliente: OSCAR · 71572401 · mesa 8</text>
+    <text x="285" y="350" text-anchor="middle">** SERVIR EN LOCAL **</text>
+    <text x="285" y="374" text-anchor="middle">-----------------------------</text>
+    <text x="285" y="394" text-anchor="middle" font-weight="700">CONSUMO</text>
+    <text x="140" y="420">1x Silpancho Chuquisaq.</text>
+    <text x="440" y="420" text-anchor="end">38.00</text>
+    <text x="140" y="440">1x Pique Macho (2 pers.)</text>
+    <text x="440" y="440" text-anchor="end">68.00</text>
+    <text x="140" y="460">---* SUBTOTAL *---</text>
+    <text x="440" y="460" text-anchor="end">106.00</text>
+    <text x="285" y="484" text-anchor="middle">-----------------------------</text>
+    <text x="140" y="510" font-weight="700">TOTAL A PAGAR:</text>
+    <text x="440" y="510" text-anchor="end" font-weight="700" font-size="13">Bs 106.00</text>
+    <text x="140" y="534">Forma pago: EFECTIVO</text>
+    <text x="140" y="552">Recibido:       Bs 110.00</text>
+    <text x="140" y="570" font-weight="700">CAMBIO:         Bs   4.00</text>
+    <text x="285" y="604" text-anchor="middle">-----------------------------</text>
+    <text x="285" y="630" text-anchor="middle">Atendido por: Jessica M.</text>
+    <text x="285" y="650" text-anchor="middle">tomó: QR del cliente VK3MD</text>
+    <text x="285" y="678" text-anchor="middle">'¡Gracias por su preferencia!'</text>
+    <text x="285" y="706" text-anchor="middle">restosuite.com/t/VK3MD</text>
+    <text x="285" y="736" text-anchor="middle" font-size="9">Servido con software RestoSuite</text>
+    <rect x="150" y="748" width="270" height="8" fill="#000"/>
+  </g>
+
+  <!-- ============ COMANDA PLATOS (COCINA) ============= -->
+  <rect x="520" y="130" width="270" height="470" rx="4" fill="#fff"/>
+  <g fill="#131313" font-size="10.5" font-family="Consolas, 'Courier New', monospace">
+    <text x="655" y="164" text-anchor="middle" font-weight="700" font-size="12">LA PAILA</text>
+    <text x="655" y="184" text-anchor="middle">COMANDA DE COCINA</text>
+    <text x="655" y="212" text-anchor="middle" fill="#8C1F1F" font-weight="700" font-size="13">** PLATOS **</text>
+    <text x="655" y="240" text-anchor="middle">12/13/26 16:40</text>
+    <text x="536" y="268">CÓDIGO: VK3MD (mesa 8)</text>
+    <text x="536" y="290">Cliente: oscar · 71572401</text>
+    <text x="655" y="316" text-anchor="middle">** SERVIR EN LOCAL **</text>
+    <line x1="536" y1="332" x2="774" y2="332" stroke="#131313"/>
+    <text x="536" y="360">1 x Silpancho Chuquisaqueño</text>
+    <text x="536" y="390">1 x Pique Macho (2 pers.)</text>
+    <line x1="536" y1="410" x2="774" y2="410" stroke="#131313"/>
+    <text x="536" y="444">cocina: Bs 106.00</text>
+    <text x="536" y="466">tomó: QR del cliente</text>
+    <text x="536" y="526">____________</text>
+    <text x="572" y="546">cocinero</text>
+    <text x="655" y="572" text-anchor="middle" font-size="9.5" font-style="italic">'¡Gracias por su preferencia!'</text>
+  </g>
+
+  <!-- ============ COMANDA BEBIDAS (BARRA) ============= -->
+  <rect x="830" y="130" width="270" height="470" rx="4" fill="#fff"/>
+  <g fill="#131313" font-size="10.5" font-family="Consolas, 'Courier New', monospace">
+    <text x="965" y="164" text-anchor="middle" font-weight="700" font-size="12">LA PAILA</text>
+    <text x="965" y="184" text-anchor="middle">COMANDA DE BARRA</text>
+    <text x="965" y="212" text-anchor="middle" fill="#0E4E36" font-weight="700" font-size="13">** BEBIDAS **</text>
+    <text x="946" y="268">CÓDIGO: VK3MD (mesa 5)</text>
+    <text x="946" y="290">Cliente: katty · 70012345</text>
+    <text x="965" y="316" text-anchor="middle">** SERVIR EN LOCAL **</text>
+    <line x1="846" y1="332" x2="1084" y2="332" stroke="#131313"/>
+    <text x="846" y="360">2 x Chicha Morada jarra</text>
+    <line x1="846" y1="382" x2="1084" y2="382" stroke="#131313"/>
+    <text x="846" y="412">barra: Bs 32.00</text>
+    <text x="846" y="434">tomó: QR del cliente</text>
+    <text x="902" y="494">____________</text>
+    <text x="902" y="514">barman</text>
+  </g>
+
+  <!-- note bottom -->
+  <text x="60" y="812" fill="#7A8394" font-family="Segoe UI" font-size="12.5">Solo se imprimen comandas de categorías con ítems pendientes (sentToKitchen=false). Rango: reimpresión no duplica (Art. II). Papel: rollo 80mm vía CSS @page.</text>
+  <text x="60" y="834" fill="#9AA1AF" font-family="Segoe UI" font-size="12">El cajero también puede regenerar el ticket desde la historia “Pagados → Reimprimir”.</text>
+</svg>

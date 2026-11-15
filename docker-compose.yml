@@ -1,0 +1,21 @@
+# Postgres local para desarrollo del MVP (costo $0)
+services:
+  db:
+    image: postgres:16-alpine
+    container_name: resto-db
+    environment:
+      POSTGRES_USER: resto
+      POSTGRES_PASSWORD: resto
+      POSTGRES_DB: resto
+    ports:
+      - "5432:5432"
+    volumes:
+      - resto-data:/var/lib/postgresql/data
+    healthcheck:
+      test: ["CMD-SHELL", "pg_isready -U resto"]
+      interval: 5s
+      timeout: 5s
+      retries: 10
+
+volumes:
+  resto-data:

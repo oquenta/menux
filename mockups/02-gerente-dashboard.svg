@@ -1,0 +1,123 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 900" font-family="Segoe UI, Arial">
+  <defs>
+    <linearGradient id="hg" x1="0" y1="0" x2="1" y2="1">
+      <stop offset="0" stop-color="#8C2B2B"/><stop offset="1" stop-color="#B4452F"/>
+    </linearGradient>
+  </defs>
+  <rect width="1440" height="900" fill="#F6F1EA"/>
+  <!-- Sidebar tenant -->
+  <rect width="230" height="900" fill="#1E2532"/>
+  <circle cx="40" cy="44" r="16" fill="#F6C445"/>
+  <text x="64" y="42" fill="#fff" font-size="18" font-weight="700">La Paila</text>
+  <text x="64" y="60" fill="#8891A5" font-size="11">Picantería Criolla</text>
+  <g font-size="14" fill="#C2C8D4">
+    <rect x="16" y="100" width="198" height="42" rx="10" fill="#2C3547"/>
+    <rect x="16" y="150" width="198" height="42" rx="10"/>
+    <rect x="16" y="200" width="198" height="42" rx="10"/>
+    <rect x="16" y="250" width="198" height="42" rx="10"/>
+    <rect x="16" y="300" width="198" height="42" rx="10"/>
+    <rect x="16" y="350" width="198" height="42" rx="10"/>
+    <text x="36" y="127" fill="#fff" font-weight="600">▦ Resumen</text>
+    <text x="36" y="177">🍽 Menú</text>
+    <text x="36" y="227">🧾 Pedidos</text>
+    <text x="36" y="277">📊 Reportes</text>
+    <text x="36" y="327">👥 Cajeros</text>
+    <text x="36" y="377">💳 APIs de pago QR</text>
+  </g>
+  <rect x="16" y="838" width="198" height="1" fill="#2C3547"/>
+  <text x="30" y="866" fill="#8891A5" font-size="11">Suscripción ACTIVA</text>
+  <text x="30" y="884" fill="#9DD5A8" font-size="11" font-weight="600">Vence 08 jun 2027</text>
+  <!-- Header -->
+  <text x="270" y="60" fill="#26303F" font-size="24" font-weight="700">Resumen del negocio</text>
+  <text x="270" y="84" fill="#7A8394" font-size="13">Domingo, 8 jun 2026 · La Paz</text>
+  <rect x="1120" y="34" width="160" height="38" rx="19" fill="#fff" stroke="#E4DDD2"/>
+  <text x="1143" y="59" fill="#7A8394" font-size="13">⤓ Exportar CSV</text>
+  <circle cx="1330" cy="53" r="17" fill="url(#hg)"/>
+  <text x="1322" y="58" fill="#fff" font-size="12" font-weight="700">JM</text>
+  <!-- KPI row -->
+  <g>
+    <rect x="270" y="110" width="265" height="104" rx="14" fill="#fff" stroke="#E4DDD2"/>
+    <text x="294" y="140" fill="#7A8394" font-size="12">VENTAS DE HOY</text>
+    <text x="294" y="180" fill="#26303F" font-size="28" font-weight="800">Bs 8.450</text>
+    <text x="294" y="204" fill="#2E8B57" font-size="12">▲ 12% vs ayer</text>
+    <rect x="555" y="110" width="265" height="104" rx="14" fill="#fff" stroke="#E4DDD2"/>
+    <text x="579" y="140" fill="#7A8394" font-size="12">PEDIDOS HOY</text>
+    <text x="579" y="180" fill="#26303F" font-size="28" font-weight="800">128</text>
+    <text x="579" y="204" fill="#7A8394" font-size="12">96 por QR · 32 en caja</text>
+    <rect x="840" y="110" width="265" height="104" rx="14" fill="#fff" stroke="#E4DDD2"/>
+    <text x="864" y="140" fill="#7A8394" font-size="12">TICKET PROMEDIO</text>
+    <text x="864" y="180" fill="#26303F" font-size="28" font-weight="800">Bs 66,0</text>
+    <text x="864" y="204" fill="#2E8B57" font-size="12">▲ 3%</text>
+    <rect x="1125" y="110" width="285" height="104" rx="14" fill="#FBEDEB" stroke="#D98B85"/>
+    <text x="1149" y="140" fill="#A04039" font-size="12">PRODUCTOS SIN STOCK</text>
+    <text x="1149" y="180" fill="#A04039" font-size="28" font-weight="800">3</text>
+    <text x="1149" y="204" fill="#A04039" font-size="12">ver alerta → Repo…</text>
+  </g>
+  <!-- Chart -->
+  <rect x="270" y="238" width="700" height="250" rx="14" fill="#fff" stroke="#E4DDD2"/>
+  <text x="294" y="272" fill="#26303F" font-size="15" font-weight="700">Ventas últimos 7 días</text>
+  <g fill="#8C2B2B">
+    <rect x="300" y="380" width="52" height="76" rx="6"/>
+    <rect x="380" y="350" width="52" height="106" rx="6"/>
+    <rect x="460" y="398" width="52" height="58" rx="6"/>
+    <rect x="540" y="330" width="52" height="126" rx="6"/>
+    <rect x="620" y="310" width="52" height="146" rx="6"/>
+    <rect x="700" y="360" width="52" height="96" rx="6"/>
+    <rect x="780" y="296" width="52" height="160" rx="6" fill="#B4452F"/>
+  </g>
+  <g fill="#7A8394" font-size="11">
+    <text x="308" y="470">Lun</text><text x="388" y="470">Mar</text><text x="468" y="470">Mié</text>
+    <text x="548" y="470">Jue</text><text x="628" y="470">Vie</text><text x="708" y="470">Sáb</text>
+    <text x="788" y="470">Hoy</text>
+  </g>
+  <line x1="290" y1="458" x2="850" y2="458" stroke="#ECE6DC"/>
+  <!-- Top products -->
+  <rect x="995" y="238" width="415" height="250" rx="14" fill="#fff" stroke="#E4DDD2"/>
+  <text x="1019" y="272" fill="#26303F" font-size="15" font-weight="700">🏆 Productos más vendidos (hoy)</text>
+  <g font-size="13">
+    <text x="1019" y="310" fill="#26303F" font-weight="600">1 · Pique Macho (2 pers.)</text>
+    <text x="1330" y="310" fill="#26303F" font-weight="700">45 u</text>
+    <rect x="1019" y="318" width="367" height="8" rx="4" fill="#F1EBE2"/><rect x="1019" y="318" width="330" height="8" rx="4" fill="#8C2B2B"/>
+    <text x="1019" y="354" fill="#26303F" font-weight="600">2 · Silpancho Chuquisaqueño</text>
+    <text x="1330" y="354" fill="#26303F" font-weight="700">38 u</text>
+    <rect x="1019" y="362" width="367" height="8" rx="4" fill="#F1EBE2"/><rect x="1019" y="362" width="270" height="8" rx="4" fill="#B4452F"/>
+    <text x="1019" y="398" fill="#26303F" font-weight="600">3 · Chicha Morada (jarra)</text>
+    <text x="1330" y="398" fill="#26303F" font-weight="700">31 u</text>
+    <rect x="1019" y="406" width="367" height="8" rx="4" fill="#F1EBE2"/><rect x="1019" y="406" width="215" height="8" rx="4" fill="#D1754F"/>
+    <text x="1019" y="442" fill="#26303F" font-weight="600">4 · Picante de Pollo</text>
+    <text x="1330" y="442" fill="#26303F" font-weight="700">24 u</text>
+    <rect x="1019" y="450" width="367" height="8" rx="4" fill="#F1EBE2"/><rect x="1019" y="450" width="165" height="8" rx="4" fill="#E7A06B"/>
+  </g>
+  <!-- Alerts -->
+  <rect x="270" y="512" width="1140" height="150" rx="14" fill="#fff" stroke="#D98B85"/>
+  <text x="294" y="546" fill="#A04039" font-size="15" font-weight="700">⚠ Alertas de inventario (Stock)</text>
+  <g font-size="13">
+    <rect x="294" y="566" width="252" height="34" rx="8" fill="#FBEDEB"/>
+    <text x="308" y="589" fill="#A04039" font-weight="600">🥩 Lomo de res · AGOTADO</text>
+    <rect x="562" y="566" width="252" height="34" rx="8" fill="#FBEDEB"/>
+    <text x="576" y="589" fill="#A04039" font-weight="600">🍢 Anticuchos · AGOTADO</text>
+    <rect x="830" y="566" width="252" height="34" rx="8" fill="#FFF6E8"/>
+    <text x="844" y="589" fill="#9A6B1F" font-weight="600">🥭 Locoto · quedan 2</text>
+    <rect x="1098" y="566" width="292" height="34" rx="8" fill="#FFF6E8"/>
+    <text x="1112" y="589" fill="#9A6B1F" font-weight="600">🧀 Queso criollo · quedan 3</text>
+  </g>
+  <text x="294" y="628" fill="#7A8394" font-size="12">Estos productos aparecen como “Agotado” en el menú móvil y deshabilitan el botón + Agregar. Regístrate en Menú → Producto → Stock.</text>
+  <!-- Bottom strip -->
+  <rect x="270" y="688" width="1140" height="180" rx="14" fill="#fff" stroke="#E4DDD2"/>
+  <text x="294" y="722" fill="#26303F" font-size="15" font-weight="700">Métodos de pago y servicio (hoy)</text>
+  <g>
+    <rect x="294" y="742" width="200" height="60" rx="10" fill="#F3F7F3" stroke="#CFE3CF"/>
+    <text x="310" y="767" fill="#2E8B57" font-size="12" font-weight="700">💵 Efectivo</text>
+    <text x="310" y="791" fill="#26303F" font-size="15" font-weight="700">Bs 5.120 · 61%</text>
+    <rect x="510" y="742" width="200" height="60" rx="10" fill="#F6F2F8" stroke="#D9CCe4"/>
+    <text x="526" y="767" fill="#7B4FA6" font-size="12" font-weight="700">📱 QR (Banco + MP)</text>
+    <text x="526" y="791" fill="#26303F" font-size="15" font-weight="700">Bs 3.330 · 39%</text>
+    <rect x="726" y="742" width="200" height="60" rx="10" fill="#FFF6E8" stroke="#E7B75F"/>
+    <text x="742" y="767" fill="#9A6B1F" font-size="12" font-weight="700">🍽 En local</text>
+    <text x="742" y="791" fill="#26303F" font-size="15" font-weight="700">112 pedidos</text>
+    <rect x="942" y="742" width="200" height="60" rx="10" fill="#F3F7F9" stroke="#C9DCE6"/>
+    <text x="958" y="767" fill="#2A6E8C" font-size="12" font-weight="700">🥡 Para llevar</text>
+    <text x="958" y="791" fill="#26303F" font-size="15" font-weight="700">16 pedidos</text>
+  </g>
+  <text x="294" y="840" fill="#7A8394" font-size="12">Anulados hoy: 3 · Comandas separadas impresas: 86 comida · 74 bebida · 22 postre</text>
+</svg>

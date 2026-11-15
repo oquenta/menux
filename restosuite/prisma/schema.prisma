@@ -1,0 +1,218 @@
+// Prisma schema — RestoSuite (SQLite en demo local; portable a PostgreSQL cambiando provider)
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "sqlite"
+  url      = env("DATABASE_URL")
+}
+
+// SQLite no soporta enums de Prisma: usamos String + constantes en src/lib/domain.ts
+
+model Tenant {
+  id             String   @id @default(cuid())
+  name           String
+  slug           String   @unique
+  phone          String?
+  primaryColor   String   @default("#7C2D12")
+  orderTtlMinutes Int     @default(30)
+  notifyDaysBefore Int    @default(15)
+  plan           String   @default("BASICO")
+  subStartsAt    DateTime
+  subExpiresAt   DateTime
+  subStatus      String   @default("ACTIVA") // ACTIVA POR_VENCER VENCIDA SUSPENDIDA
+  priceCents     Int      @default(0)
+  isActive       Boolean  @default(true)
+  createdAt      DateTime @default(now())
+  updatedAt      DateTime @updatedAt
+
+  users       User[]
+  categories  Category[]
+  products    Product[]
+  tables      Table[]
+  sessions    ClientSession[]
+  orders      Order[]
+  providers   PaymentProvider[]
+  movements   StockMovement[]
+  subEvents   SubscriptionEvent[]
+  auditLogs   AuditLog[]
+}
+
+model User {
+  id           String   @id @default(cuid())
+  email        String   @unique
+  passwordHash String
+  name         String
+  displayName  String?
+  role         String // SUPERADMIN GERENTE CAJERO
+  tenantId     String?
+  tenant       Tenant?  @relation(fields: [tenantId], references: [id])
+  createdAt    DateTime @default(now())
+}
+
+model Category {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  name      String
+  kind      String   @default("OTRO") // PLATO BEBIDA POSTRE OTRO
+  sortOrder Int      @default(0)
+  active    Boolean  @default(true)
+
+  products Product[]
+
+  @@unique([tenantId, name])
+}
+
+model Product {
+  id          String   @id @default(cuid())
+  tenantId    String
+  tenant      Tenant   @relation(fields: [tenantId], references: [id])
+  categoryId  String
+  category    Category @relation(fields: [categoryId], references: [id])
+  name        String
+  description String?
+  emoji       String   @default("🍽")
+  photoUrl    String?
+  priceCents  Int
+  stock       Int      @default(0)
+  trackStock  Boolean  @default(true)
+  lowStockAt  Int      @default(3)
+  active      Boolean  @default(true)
+
+  items    OrderItem[]
+  movements StockMovement[]
+}
+
+model Table {
+  id       String  @id @default(cuid())
+  tenantId String
+  tenant   Tenant  @relation(fields: [tenantId], references: [id])
+  number   Int
+  seats    Int     @default(4)
+  active   Boolean @default(true)
+
+  sessions ClientSession[]
+
+  @@unique([tenantId, number])
+}
+
+model ClientSession {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  tableId   String?
+  table     Table?   @relation(fields: [tableId], references: [id])
+  alias     String?
+  phone     String?
+  closed    Boolean  @default(false)
+  createdAt DateTime @default(now())
+
+  orders Order[]
+}
+
+model Order {
+  id           String        @id @default(cuid())
+  tenantId     String
+  tenant       Tenant        @relation(fields: [tenantId], references: [id])
+  sessionId    String
+  session      ClientSession @relation(fields: [sessionId], references: [id])
+  code         String
+  status       String        @default("EN_CAJA") // EN_CAJA PAGADO ANULADO EXPIRADO
+  source       String        @default("CLIENTE_QR") // CLIENTE_QR CAJERO
+  serviceType  String        @default("EN_LOCAL")
+  tableNumber  Int?
+  aliasSnapshot String?
+  phoneSnapshot String?
+  notes        String?
+  expiresAt    DateTime
+  totalCents   Int
+  paidCents    Int?
+  changeCents  Int?
+  method       String?
+  paidAt       DateTime?
+  closedAt     DateTime?
+  createdAt    DateTime      @default(now())
+
+  items    OrderItem[]
+  payments Payment[]
+
+  @@index([tenantId, status])
+  @@index([code])
+}
+
+model OrderItem {
+  id              String  @id @default(cuid())
+  orderId         String
+  order           Order   @relation(fields: [orderId], references: [id])
+  productId       String
+  product         Product @relation(fields: [productId], references: [id])
+  nameSnapshot    String
+  emojiSnapshot   String  @default("🍽")
+  unitPriceCents  Int
+  qty             Int
+  kindSnapshot    String // PLATO BEBIDA POSTRE
+  sentToKitchen   Boolean @default(false)
+
+  @@index([productId])
+}
+
+model Payment {
+  id          String           @id @default(cuid())
+  orderId     String
+  order       Order            @relation(fields: [orderId], references: [id])
+  method      String // EFECTIVO QR
+  providerId  String?
+  provider    PaymentProvider? @relation(fields: [providerId], references: [id])
+  providerRef String?          @unique
+  amountCents Int
+  createdAt   DateTime         @default(now())
+}
+
+model PaymentProvider {
+  id           String    @id @default(cuid())
+  tenantId     String
+  tenant       Tenant    @relation(fields: [tenantId], references: [id])
+  name         String
+  kind         String    @default("QR_ESTATICO")
+  credentials  String? // placeholder cifrado en fase posterior
+  priority     Int       @default(0)
+  active       Boolean   @default(true)
+
+  payments Payment[]
+
+  @@unique([tenantId, name])
+}
+
+model StockMovement {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  productId String
+  product   Product  @relation(fields: [productId], references: [id])
+  delta     Int
+  reason    String // VENTA INGRESO MERMA DEVOLUCION
+  createdAt DateTime @default(now())
+}
+
+model SubscriptionEvent {
+  id        String   @id @default(cuid())
+  tenantId  String
+  tenant    Tenant   @relation(fields: [tenantId], references: [id])
+  type      String // VENCE_15 VENCE_7 VENCIDO CORTADO RENOVADO
+  message   String?
+  createdAt DateTime @default(now())
+}
+
+model AuditLog {
+  id         String   @id @default(cuid())
+  tenantId   String?
+  tenant     Tenant?  @relation(fields: [tenantId], references: [id])
+  actorEmail String?
+  action     String
+  entity     String
+  entityId   String?
+  detail     String?
+  createdAt  DateTime @default(now())
+}

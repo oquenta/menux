@@ -1,0 +1,135 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1280 860" font-family="Segoe UI, Arial">
+  <rect width="1280" height="860" fill="#1B3A31"/>
+  <!-- ===== Caja detrás (atenuada) ===== -->
+  <circle cx="66" cy="52" r="22" fill="#E8A13C"/>
+  <text x="57" y="60" fill="#26301B" font-size="14" font-weight="800">JM</text>
+  <text x="102" y="46" fill="#fff" font-size="21" font-weight="700" opacity="0.5">Caja · La Paila</text>
+  <rect x="1266" y="34" width="110" height="38" rx="19" fill="#E8642B"/>
+  <text x="1287" y="59" fill="#fff" font-size="13" font-weight="700">+ nuevo</text>
+  <rect x="40" y="96" width="1200" height="46" rx="23" fill="#22473C" opacity="0.5"/>
+  <text x="72" y="126" fill="#8FB3A8" font-size="14" opacity="0.5">🔍 Buscar por celular, alias o código…</text>
+  <rect x="40" y="158" width="110" height="36" rx="18" fill="#fff" opacity="0.5"/>
+  <text x="60" y="182" fill="#1B3A31" font-size="13" font-weight="700" opacity="0.5">En caja · 3</text>
+  <rect x="40" y="220" width="1200" height="150" rx="16" fill="#22473C" opacity="0.4"/>
+  <rect x="40" y="390" width="1200" height="150" rx="16" fill="#22473C" opacity="0.3"/>
+  <!-- overlay -->
+  <rect x="40" y="96" width="1200" height="730" fill="#0E241D" opacity="0.55"/>
+
+  <!-- ===== MODAL NUEVO PEDIDO ===== -->
+  <rect x="120" y="90" width="1040" height="700" rx="20" fill="#22473C" stroke="#2E5A4C" stroke-width="1.5"/>
+  <!-- header modal -->
+  <text x="170" y="140" fill="#fff" font-size="21" font-weight="800">Nuevo pedido (manual) — sin QR</text>
+  <text x="170" y="164" fill="#8FB3A8" font-size="13">Elabora el carrito tú mismo para el cliente que llegó a la mesa o al mostrador</text>
+  <!-- stepper -->
+  <rect x="170" y="184" width="270" height="30" rx="15" fill="#2E5A4C"/>
+  <circle cx="196" cy="199" r="10" fill="#E8A13C"/><text x="192" y="204" fill="#26301B" font-size="12" font-weight="800">1</text>
+  <text x="214" y="204" fill="#fff" font-size="12.5" font-weight="700">Cliente</text>
+  <circle cx="300" cy="199" r="10" fill="none" stroke="#8FB3A8"/><text x="296" y="204" fill="#8FB3A8" font-size="12">2</text>
+  <text x="318" y="204" fill="#8FB3A8" font-size="12">Carrito</text>
+  <circle cx="390" cy="199" r="10" fill="none" stroke="#8FB3A8"/><text x="386" y="204" fill="#8FB3A8" font-size="12">3</text>
+  <text x="408" y="204" fill="#8FB3A8" font-size="12">Cobro</text>
+
+  <!-- ===== PASO 1: datos del cliente (izquierda) ===== -->
+  <text x="170" y="248" fill="#E8A13C" font-size="13" font-weight="700" letter-spacing="1">DATOS DEL CLIENTE</text>
+  <text x="170" y="280" fill="#C8D6D0" font-size="12.5">Alias (¿cómo le llama la caja?) *</text>
+  <rect x="170" y="292" width="360" height="42" rx="10" fill="#1B3A31" stroke="#396B59"/>
+  <text x="190" y="319" fill="#fff" font-size="14">p. ej. Fernanda Q.</text>
+  <text x="170" y="366" fill="#C8D6D0" font-size="12.5">Celular *</text>
+  <rect x="170" y="378" width="360" height="42" rx="10" fill="#1B3A31" stroke="#396B59"/>
+  <text x="190" y="405" fill="#fff" font-size="14">70012345</text>
+  <text x="170" y="452" fill="#C8D6D0" font-size="12.5">Mesa</text>
+  <g>
+    <rect x="170" y="464" width="52" height="40" rx="8" fill="#1B3A31" stroke="#396B59"/><text x="188" y="490" fill="#E8A13C" font-weight="800">M3</text>
+    <rect x="230" y="464" width="52" height="40" rx="8" fill="#1B3A31" stroke="#396B59"/><text x="248" y="490" fill="#fff" font-weight="800">M4</text>
+    <rect x="290" y="464" width="52" height="40" rx="8" fill="#1B3A31" stroke="#396B59"/><text x="308" y="490" fill="#fff" font-weight="800">M5</text>
+    <rect x="350" y="464" width="52" height="40" rx="8" fill="#1B3A31" stroke="#396B59"/><text x="368" y="490" fill="#fff" font-weight="800">M6</text>
+    <rect x="410" y="464" width="52" height="40" rx="8" fill="#E8A13C"/><text x="428" y="490" fill="#26301B" font-weight="800">M8</text>
+  </g>
+  <text x="170" y="530" fill="#C8D6D0" font-size="12.5">Servicio</text>
+  <rect x="170" y="542" width="150" height="40" rx="20" fill="#2E8B57"/>
+  <text x="196" y="567" fill="#fff" font-size="13" font-weight="700">🍽 En el local</text>
+  <rect x="330" y="542" width="140" height="40" rx="20" fill="none" stroke="#396B59"/>
+  <text x="352" y="567" fill="#8FB3A8" font-size="13">🥡 Para llevar</text>
+  <!-- aviso anti fantasma -->
+  <rect x="170" y="606" width="360" height="88" rx="10" fill="#FDF3E4"/>
+  <text x="188" y="632" fill="#9A6B1F" font-size="12" font-weight="700">🔒 Control anti-pedido fantasma (R4)</text>
+  <text x="188" y="652" fill="#7A6938" font-size="11">El pedido creado manual se enlaza a la mesa M8.</text>
+  <text x="188" y="668" fill="#7A6938" font-size="11">Si el cliente luego escanea el QR de esa mesa con un</text>
+  <text x="188" y="684" fill="#7A6938" font-size="11">pedido abierto, se le mostrará SU código actual.</text>
+
+  <!-- Botón continuar -->
+  <rect x="170" y="720" width="360" height="46" rx="10" fill="#E8A13C"/>
+  <text x="292" y="749" fill="#26301B" font-size="15" font-weight="800">Continuar → armar carrito</text>
+
+  <!-- ===== PASO 2: POS productos (derecha) ===== -->
+  <rect x="570" y="232" width="2" height="500" fill="#2E5A4C"/>
+  <text x="610" y="248" fill="#E8A13C" font-size="13" font-weight="700" letter-spacing="1">ARMAR CARRITO</text>
+  <rect x="610" y="262" width="490" height="40" rx="20" fill="#1B3A31" stroke="#396B59"/>
+  <text x="632" y="289" fill="#8FB3A8" font-size="13">🔍 Buscar producto…</text>
+  <!-- chips cat -->
+  <g font-size="12">
+    <rect x="610" y="312" width="62" height="28" rx="14" fill="#E8A13C"/><text x="622" y="331" fill="#26301B" font-weight="700">Todo</text>
+    <rect x="680" y="312" width="66" height="28" rx="14" fill="none" stroke="#396B59"/><text x="692" y="331" fill="#8FB3A8">Platos</text>
+    <rect x="754" y="312" width="72" height="28" rx="14" fill="none" stroke="#396B59"/><text x="766" y="331" fill="#8FB3A8">Bebidas</text>
+    <rect x="834" y="312" width="70" height="28" rx="14" fill="none" stroke="#396B59"/><text x="846" y="331" fill="#8FB3A8">Postres</text>
+  </g>
+  <!-- grid productos -->
+  <g>
+    <rect x="610" y="352" width="150" height="112" rx="12" fill="#1B3A31" stroke="#396B59"/>
+    <rect x="622" y="362" width="40" height="40" rx="8" fill="#FDEEEE"/><text x="630" y="392" font-size="20">🍟</text>
+    <text x="622" y="422" fill="#fff" font-size="11.5" font-weight="700">Pique Macho 2p</text>
+    <text x="622" y="440" fill="#E8A13C" font-size="12" font-weight="800">Bs 68</text>
+    <rect x="622" y="446" width="126" height="26" rx="6" fill="#2E8B57"/>
+    <text x="655" y="464" fill="#fff" font-size="11" font-weight="700">＋ Agregar</text>
+
+    <rect x="770" y="352" width="150" height="112" rx="12" fill="#1B3A31" stroke="#396B59"/>
+    <rect x="782" y="362" width="40" height="40" rx="8" fill="#FFF3E0"/><text x="790" y="392" font-size="20">🍖</text>
+    <text x="782" y="422" fill="#fff" font-size="11.5" font-weight="700">Milanesa</text>
+    <text x="782" y="440" fill="#E8A13C" font-size="12" font-weight="800">Bs 42</text>
+    <rect x="782" y="446" width="126" height="26" rx="6" fill="#2E8B57"/>
+    <text x="815" y="464" fill="#fff" font-size="11" font-weight="700">＋ Agregar</text>
+
+    <rect x="930" y="352" width="170" height="112" rx="12" fill="#1B3A31" stroke="#396B59"/>
+    <rect x="942" y="362" width="40" height="40" rx="8" fill="#EFEAE2"/><text x="950" y="392" font-size="20">🥩</text>
+    <text x="942" y="422" fill="#8B8579" font-size="11.5" font-weight="700">Lomo de res</text>
+    <rect x="942" y="432" width="120" height="24" rx="12" fill="#C0392B"/>
+    <text x="956" y="449" fill="#fff" font-size="10.5" font-weight="700">🚫 Agotado</text>
+
+    <rect x="610" y="476" width="150" height="112" rx="12" fill="#1B3A31" stroke="#396B59"/>
+    <rect x="622" y="486" width="40" height="40" rx="8" fill="#FDF3E8"/><text x="630" y="516" font-size="20">🍹</text>
+    <text x="622" y="546" fill="#fff" font-size="11.5" font-weight="700">Chicha (jarra)</text>
+    <text x="622" y="564" fill="#E8A13C" font-size="12" font-weight="800">Bs 16</text>
+    <rect x="622" y="570" width="126" height="26" rx="6" fill="#2E8B57"/>
+    <text x="655" y="588" fill="#fff" font-size="11" font-weight="700">＋ Agregar</text>
+
+    <rect x="770" y="476" width="150" height="112" rx="12" fill="#1B3A31" stroke="#396B59"/>
+    <rect x="782" y="486" width="40" height="40" rx="8" fill="#F5EEF8"/><text x="790" y="516" font-size="20">🍮</text>
+    <text x="782" y="546" fill="#fff" font-size="11.5" font-weight="700">Flan</text>
+    <text x="782" y="564" fill="#E8A13C" font-size="12" font-weight="800">Bs 12</text>
+    <rect x="782" y="570" width="126" height="26" rx="6" fill="#2E8B57"/>
+    <text x="815" y="588" fill="#fff" font-size="11" font-weight="700">＋ Agregar</text>
+  </g>
+
+  <!-- resumen carrito mini -->
+  <rect x="930" y="476" width="170" height="112" rx="12" fill="#2E5A4C" stroke="#396B59"/>
+  <text x="944" y="500" fill="#8FB3A8" font-size="10.5" font-weight="700">CARRITO</text>
+  <text x="944" y="522" fill="#fff" font-size="11.5">1× Pique Macho 2p</text>
+  <text x="1086" y="522" fill="#fff" font-size="11" text-anchor="end">68</text>
+  <text x="944" y="542" fill="#fff" font-size="11.5">1× Flan</text>
+  <text x="1086" y="542" fill="#fff" font-size="11" text-anchor="end">12</text>
+  <line x1="944" y1="552" x2="1086" y2="552" stroke="#396B59"/>
+  <text x="944" y="572" fill="#E8A13C" font-size="12" font-weight="800">TOTAL</text>
+  <text x="1086" y="572" fill="#E8A13C" font-size="13" font-weight="800" text-anchor="end">Bs 80</text>
+  <text x="944" y="592" fill="#8FB3A8" font-size="9.5">2 items · en el local · M8</text>
+
+  <!-- acciones finales del modal -->
+  <text x="610" y="636" fill="#C8D6D0" font-size="12.5">¿Qué hacemos con este pedido?</text>
+  <rect x="610" y="650" width="228" height="52" rx="10" fill="#1B3A31" stroke="#396B59"/>
+  <text x="636" y="674" fill="#fff" font-size="13" font-weight="700">🧾 Guardar en cola</text>
+  <text x="636" y="692" fill="#8FB3A8" font-size="10.5">queda “En caja” con TTL 30min</text>
+  <rect x="850" y="650" width="250" height="52" rx="10" fill="#E8642B"/>
+  <text x="874" y="674" fill="#fff" font-size="13" font-weight="800">💳 Ir directo a cobrar</text>
+  <text x="874" y="692" fill="#FFD9C7" font-size="10.5">abre modal de cobro con Bs 80</text>
+  <!-- footer modal -->
+  <text x="170" y="774" fill="#5E8579" font-size="10.5">Al guardar se genera código de 5 caracteres (ej. 2RLMQ) visible para el cliente y el filtro de búsqueda por código/alias/celular.</text>
+</svg>
